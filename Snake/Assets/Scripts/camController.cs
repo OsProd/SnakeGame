@@ -7,6 +7,7 @@ public class camController : MonoBehaviour {
     public Transform player;
     public float score;
     public Text myScore;
+    public static float maxScore = 0; 
     public Text myCoins;
     public float maxY;
     public float maxGap;
@@ -24,6 +25,10 @@ public class camController : MonoBehaviour {
         if (Mathf.Round(transform.position.y) > score)
         {
             score = Mathf.Round(transform.position.y);
+        }
+        if (maxScore < score)
+        {
+            maxScore = score;
         }
         myScore.text = score.ToString();
         myCoins.text = coins.ToString();
