@@ -8,7 +8,19 @@ public class playerMoving : MonoBehaviour
     public float rotationSpeed;
     public bool rotate;
     public GameObject playerShadow;
-    public static bool playerLosed = false;
+    public static bool invis;
+    private TrailRenderer trail;
+    private SpriteRenderer playerSprite;
+    private Collider2D playerCollider;
+    public float invisDelay = 10;
+    public float counter;
+
+    private void Start()
+    {
+        trail = GetComponent<TrailRenderer>();
+        playerSprite = GetComponent<SpriteRenderer>();
+        playerCollider = GetComponent<Collider2D>();
+    }
 
     private void Update()
     {
@@ -20,7 +32,24 @@ public class playerMoving : MonoBehaviour
         {
             rotate = false;
         }
+        if (invis && invisDelay > counter)
+        {
+            counter += Time.deltaTime;
+            trail.enabled = false;
+            playerSprite.enabled = false;
+            playerCollider.enabled = false;
+        }
+        if (invisDelay <= counter)
+        {
+            invis = false;
+            counter = 0;
+            trail.enabled = true;
+            playerSprite.enabled = true;
+            playerCollider.enabled = true;
+        }
     }
+
+
 
     void FixedUpdate()
     {
@@ -36,9 +65,8 @@ public class playerMoving : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            playerLosed = true;
-            Destroy(gameObject);
-            Destroy(playerShadow);
+            gameObject.SetActive(false);
+            playerShadow.SetActive(false);
         }
     }
 }

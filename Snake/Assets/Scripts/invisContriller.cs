@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class coinsController : MonoBehaviour {
+public class invisContriller : MonoBehaviour {
     public GameObject shadow;
-    //public GameObject coinParticles;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
-        {
+        { 
             Destroy(gameObject);
             Destroy(shadow);
-            camController.coins += 1;
-            //Instantiate(coinParticles, transform.position, Quaternion.identity);
+            playerMoving.invis = true;
         }
         if (collision.gameObject.tag == "worldEnd")
         {
@@ -21,4 +19,5 @@ public class coinsController : MonoBehaviour {
             Destroy(shadow);
         }
     }
+
 }
