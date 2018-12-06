@@ -14,6 +14,7 @@ public class playerMoving : MonoBehaviour
     private Collider2D playerCollider;
     public float invisDelay = 10;
     public float counter;
+    public float timeBlink;
 
     private void Start()
     {
@@ -34,9 +35,16 @@ public class playerMoving : MonoBehaviour
         }
         if (invis && invisDelay > counter)
         {
+            if (counter > timeBlink && counter < timeBlink + 0.5f || counter > timeBlink + 1 && counter < timeBlink + 1.5f || counter > timeBlink + 2 && counter < timeBlink + 2.5f)
+            {
+                playerSprite.enabled = true;
+            }
+            else
+            {
+                playerSprite.enabled = false;
+            }
             counter += Time.deltaTime;
             trail.enabled = false;
-            playerSprite.enabled = false;
             playerCollider.enabled = false;
         }
         if (invisDelay <= counter)
