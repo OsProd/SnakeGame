@@ -7,5 +7,6 @@ public class UIButtons : MonoBehaviour {
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        playerMoving.playerLosed = false;
     }
 }
