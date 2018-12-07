@@ -16,6 +16,7 @@ public class playerMoving : MonoBehaviour
     public float counter;
     public float timeBlink;
     public float wallX;
+    public Transform Dwall;
 
     private void Start()
     {
@@ -57,6 +58,11 @@ public class playerMoving : MonoBehaviour
             playerCollider.enabled = true;
         }
         if (transform.position.x > wallX || transform.position.x < -wallX)
+        {
+            gameObject.SetActive(false);
+            playerShadow.SetActive(false);
+        }
+        if (transform.position.y <= Dwall.position.y)
         {
             gameObject.SetActive(false);
             playerShadow.SetActive(false);
