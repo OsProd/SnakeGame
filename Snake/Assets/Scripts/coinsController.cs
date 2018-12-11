@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class coinsController : MonoBehaviour {
-    public GameObject shadow;
-    //public GameObject coinParticles;
+    public float radius;
+    public LayerMask whatis;
+    public bool delete;
+    
+    private void Update()
+    {
+        delete = Physics2D.OverlapCircle(transform.position, radius, whatis);
+        if (delete)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            Destroy(shadow);
             camController.coins += 1;
-            //Instantiate(coinParticles, transform.position, Quaternion.identity);
         }
         if (collision.gameObject.tag == "worldEnd")
         {
             Destroy(gameObject);
-            Destroy(shadow);
         }
     }
 }

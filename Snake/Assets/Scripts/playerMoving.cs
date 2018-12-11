@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerMoving : MonoBehaviour
 {
     public float speed;
-    public float rotationSpeed;
+    public static float rotationSpeed = 200;
     public bool rotate;
     public GameObject playerShadow;
     public static bool invis;

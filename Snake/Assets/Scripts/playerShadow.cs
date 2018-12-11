@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerShadow : MonoBehaviour {
     public float speed;
-    public float rotationSpeed;
+    public static float rotationSpeed = 200;
     public bool rotate;
     
 	void Update () {
