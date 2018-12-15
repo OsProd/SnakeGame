@@ -1,20 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class highScore : MonoBehaviour {
-    private LineRenderer highLine;
+    public GameObject highScoreLine;
+    public GameObject text;
+    public Transform canvas;
 
-    private void Start()
-    {
-        highLine = GetComponent<LineRenderer>();
-    }
+
     void Update () {
         if (UIButtons.renderLine)
         {
-            transform.position = new Vector2(transform.position.x, camController.maxScore);
-            highLine.SetPosition(0, new Vector3(highLine.GetPosition(0).x, camController.maxScore, highLine.GetPosition(0).z));
-            highLine.SetPosition(1, new Vector3(highLine.GetPosition(1).x, camController.maxScore, highLine.GetPosition(1).z));
+            Instantiate(highScoreLine, new Vector3(0, camController.maxScore, 0), Quaternion.identity);
+            Instantiate(text, new Vector3 (0, camController.maxScore, 0), Quaternion.identity, canvas);
             UIButtons.renderLine = false;
         }
     }

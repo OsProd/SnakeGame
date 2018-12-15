@@ -7,7 +7,7 @@ public class camController : MonoBehaviour {
     public Transform player;
     public float score;
     public Text myScore;
-    public static float maxScore = 0; 
+    public static float maxScore = 0;
     public Text myCoins;
     public float maxY;
     public float maxGap;
